@@ -1,5 +1,6 @@
 package com.learning.java.api.util.properties;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -12,7 +13,14 @@ public class PropertyFileLoader {
 		InputStream inputStream = PropertyFileLoader.class.getResourceAsStream("/config/properties/awss3.properties");
 
 		if (inputStream != null) {
-			System.out.println("not null");
+			try {
+				properties.load(inputStream);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
+		System.out.println("name   : " + properties.getProperty("name"));
 	}
 }
